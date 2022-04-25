@@ -15,9 +15,16 @@ namespace QuanLyThuVienSach.GUI.GUI_ADMIN
     public partial class FormAddBooks : Form
     {
         public delegate void Mydel();
+
+        public int ID_Person;
         public Mydel d { get; set; }
         public FormAddBooks()
         {
+            InitializeComponent();
+        }
+        public FormAddBooks(int ID_person)
+        {
+            this.ID_Person = ID_person;
             InitializeComponent();
         }
 
@@ -27,7 +34,7 @@ namespace QuanLyThuVienSach.GUI.GUI_ADMIN
         }
         private void bt_AddBook_Click(object sender, EventArgs e)
         {
-            BLL_Sach.Instance.AddSach_BLL(GetSach());
+            BLL_Sach.Instance.AddSach_BLL(GetSach(),ID_Person);
             d();
           
         }
@@ -35,7 +42,6 @@ namespace QuanLyThuVienSach.GUI.GUI_ADMIN
         {
             Sach sach = new Sach();
             sach.TongSoLuong = Convert.ToInt32(tb_NumberOfBook.Text.ToString());
-            sach.SoLuongDaBan = 0;
             sach.TheLoai = tb_Cetegory.Text;
             sach.TenTacGia = tb_Author.Text;
             sach.GiaNhap = Convert.ToInt32(tb_ImportPrice.Text.ToString());

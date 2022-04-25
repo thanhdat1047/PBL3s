@@ -102,6 +102,15 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
             string query = $" UPDATE dbo.Account SET UserName = '{account.UserName}', Password ='{account.Password}'" +
                            $" WHERE ID_Account = '{account.ID_Account}'; ";
             DBHelper.Instance.ExecuteDB(query);
+        }
+        public DataTable FindPerson_DAL(string txt)
+        {
+            string query =
+              " SELECT ID_Person,Name_Person,Gender,DateOfBirth,Address,Email,PhoneNumber,Person.ID_Account, UserName, Password, Name_Position" +
+              " FROM Person,Account,Position" +
+              " WHERE Person.ID_Account = Account.ID_Account AND Account.ID_Position = Position.ID_Position" +
+             $" AND Name_Person LIKE '%{txt}%'  ";
+            return DBHelper.Instance.GetRecord(query);
 
         }
 

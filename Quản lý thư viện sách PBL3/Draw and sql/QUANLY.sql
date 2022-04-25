@@ -18,7 +18,6 @@ ID_Position int references dbo.Position(ID_Position)
 )
 go
 
-
 create table Person(
 ID_Person int identity(1, 1) primary key,
 Name_Person varchar(30),
@@ -45,8 +44,7 @@ go
 
 create table Kho(
 MaSach int primary key foreign key (MaSach) references Sach,
-TongSoLuong int,
-SoLuongDaBan int
+TongSoLuong int
 )
 go
 
@@ -66,9 +64,9 @@ NgayLap DATETIME ,
 TongTien Decimal(10,2),
 ID_Person int,
 FOREIGN KEY (ID_Person) REFERENCES dbo.Person(ID_Person),
-
 )
 go
+
 
 create table ChiTietHoaDon(
 MaHoaDon INT FOREIGN key (MaHoaDon) references HoaDon,
@@ -78,6 +76,7 @@ MucGiamGia float
 constraint pk_ChiTiet primary key(MaHoaDon, MaSach)
 )
 go
+
 
 create table SachKhuyenMai(
 ID_SachKhuyenMai INT IDENTITY(1, 1) PRIMARY KEY,

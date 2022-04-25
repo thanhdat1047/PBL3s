@@ -31,6 +31,11 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             return DAL_Member.Instance.GetAllMembers_DAL();
         }
 
+        public DataTable FindPerson_BLL(string txt)
+        {
+            return DAL_Member.Instance.FindPerson_DAL(txt);
+        }
+
         public void DeleteMember_BLL(List<int> ListDel)
         {
             foreach (int ID_Person in ListDel)
@@ -129,6 +134,8 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             }
             return account;
         }
+
+        
 
 
     }

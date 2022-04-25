@@ -73,6 +73,16 @@ namespace QuanLyThuVienSach.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap billing_machine_24px {
+            get {
+                object obj = ResourceManager.GetObject("billing_machine_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap book_26px {
             get {
                 object obj = ResourceManager.GetObject("book_26px", resourceCulture);
@@ -116,6 +126,16 @@ namespace QuanLyThuVienSach.Properties {
         internal static System.Drawing.Bitmap eye_24px {
             get {
                 object obj = ResourceManager.GetObject("eye_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap futures_30px {
+            get {
+                object obj = ResourceManager.GetObject("futures_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -366,6 +386,16 @@ namespace QuanLyThuVienSach.Properties {
         internal static System.Drawing.Bitmap system_administrator_female_24px {
             get {
                 object obj = ResourceManager.GetObject("system_administrator_female_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Untitled_Diagram_drawio {
+            get {
+                object obj = ResourceManager.GetObject("Untitled Diagram.drawio", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
