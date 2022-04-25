@@ -73,6 +73,7 @@ namespace QuanLyThuVienSach
         {
             string username = tb_USERNAME.Text;
             string password = tb_PASSWORD.Text;
+            bool check = true;
             foreach (Account i in BLL_Login.Instance.GetAllAccount_BLL())
             {
                 if (username == i.UserName && password == i.Password)
@@ -97,11 +98,16 @@ namespace QuanLyThuVienSach
                     {
                         break;
                     }
-
                 }
-
+                else
+                {
+                    check = false;
+                }            
             }
-
+            if(check == false)
+            {         
+             MessageBox.Show("Sai tài khoản đăng nhập");       
+            }    
            
         }
     }

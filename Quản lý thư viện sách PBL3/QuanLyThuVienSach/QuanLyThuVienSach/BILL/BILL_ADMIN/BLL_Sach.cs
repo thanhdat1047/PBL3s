@@ -45,7 +45,6 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
                     GiaNhap = Convert.ToDouble(i[6].ToString()),
                     GiaBan = Convert.ToDouble(i[7].ToString()),
                     TongSoLuong = Convert.ToInt32(i[8]),
-                    SoLuongDaBan = Convert.ToInt32(i[9])
 
                 }); ;
             }
@@ -65,9 +64,9 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             return sach;
         }
 
-        public void UpdateSach_BLL(Sach sach)
+        public void UpdateSach_BLL(Sach sach, int ID_Person)
         {
-            DAL_Sach.Instance.UpdateSach_DAL(sach);
+            DAL_Sach.Instance.UpdateSach_DAL(sach, ID_Person);
         }
         public void DelSach_BLL(List<string> MaSach)
         {
@@ -77,9 +76,9 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             }
         }
 
-        public void AddSach_BLL(Sach sach)
+        public void AddSach_BLL(Sach sach,int ID_Person)
         {
-            DAL_Sach.Instance.AddSach_DAL(sach);
+            DAL_Sach.Instance.AddSach_DAL(sach,ID_Person);
         }
 
         public DataTable FindSach_BLL(string txt)

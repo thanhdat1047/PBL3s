@@ -1,5 +1,4 @@
 ﻿using QuanLyThuVienSach.BILL.BILL_ADMIN;
-using QuanLyThuVienSach.DAL.DAL_ADMIN;
 using QuanLyThuVienSach.DTO.DTO_ADMIN;
 using QuanLyThuVienSach.GUI.GUI_ADMIN;
 using System;
@@ -16,11 +15,9 @@ namespace QuanLyThuVienSach.GUI
 {
     public partial class Admin : Form
     {
-        
+        int movex, movey, move;
         public int ID_AccountL { get; set; }
         public int ID_PersonL { get; set; }
-
-        int movex, movey, move;
         public Admin()
         {
             InitializeComponent();
@@ -36,6 +33,7 @@ namespace QuanLyThuVienSach.GUI
         }
 
         //-------------------------------------------------------------- SET DESIGN
+
         #region SetDesign
         private void MovePanel(Control c)
         {
@@ -66,25 +64,13 @@ namespace QuanLyThuVienSach.GUI
         }
 
         #endregion
-
-        private void bt_Expenses_Click(object sender, EventArgs e)
-        {
-            MovePanel(bt_Expenses);
-            Page_Admin.SetPage("Expenses");
-        }
-    
-        private void bt_Revenue_Click(object sender, EventArgs e)
-        {
-            MovePanel(bt_Revenue);
-            Page_Admin.SetPage("Revenue");
-        }
-
-        //------------------------------------------------------------------RESUME
+  
+        //------------------------------------------------------------------ RESUME
 
         #region RESEME
         private void bt_EditResume_Click(object sender, EventArgs e)
         {
-          
+           
             EditResume f = new EditResume(ID_PersonL);
             f.d = new EditResume.Mydel(ReloadResume);
             f.ShowDialog();
@@ -100,6 +86,7 @@ namespace QuanLyThuVienSach.GUI
         }
         private void bt_Resume_Click(object sender, EventArgs e)
         {
+            ReloadResume();
             MovePanel(bt_Resume);
             Page_Admin.SetPage("Resume");
         }
@@ -126,7 +113,7 @@ namespace QuanLyThuVienSach.GUI
         }
         #endregion
 
-        //--------------------------------------------------------------MEMBER
+        //-------------------------------------------------------------- MEMBER
 
         #region Member
         private void cbb_Positon_KeyPress(object sender, KeyPressEventArgs e)
@@ -180,7 +167,6 @@ namespace QuanLyThuVienSach.GUI
                 ShowMembers();
             }
         }
-
         private void DataGridView_Members_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -222,8 +208,12 @@ namespace QuanLyThuVienSach.GUI
         }
         private void bt_Save_Click(object sender, EventArgs e)
         {
-            BLL_Member.Instance.UpdateMember_BLL(GetMember());
-            ShowMembers();
+            if(DataGridView_Members.SelectedRows != null)
+            {
+                BLL_Member.Instance.UpdateMember_BLL(GetMember());
+                ShowMembers();
+
+            }     
         }
         private Member GetMember()
         {
@@ -258,9 +248,28 @@ namespace QuanLyThuVienSach.GUI
             f.d = new FormAddMember.Mydel(ShowMembers);
             f.ShowDialog();
         }
+
+        private void Search_Members_Click(object sender, EventArgs e)
+        {
+            DataGridView_Members.DataSource = BLL_Member.Instance.FindPerson_BLL(tb_SearchMember.Text);
+            DataGridView_Members.Columns[0].HeaderText = "ID";
+            DataGridView_Members.Columns[1].HeaderText = "Name";
+            DataGridView_Members.Columns[1].Width = 120;
+            DataGridView_Members.Columns[2].HeaderText = "      Gender";
+            DataGridView_Members.Columns[3].HeaderText = "Date of Birth";
+            DataGridView_Members.Columns[4].HeaderText = "Address";
+            DataGridView_Members.Columns[5].HeaderText = "Email";
+            DataGridView_Members.Columns[5].Width = 200;
+            DataGridView_Members.Columns[6].HeaderText = "Phone number";
+            DataGridView_Members.Columns[6].Width = 100;
+            DataGridView_Members.Columns[7].HeaderText = "ID Account";
+            DataGridView_Members.Columns[8].HeaderText = "User name";
+            DataGridView_Members.Columns[9].HeaderText = "Password";
+            DataGridView_Members.Columns[10].HeaderText = "Position";
+        }
         #endregion
 
-        //---------------------------------------------------------BOOK
+        //--------------------------------------------------------- BOOK
 
         #region BOOK
         public void ShowManageBook()
@@ -277,7 +286,6 @@ namespace QuanLyThuVienSach.GUI
             DataGridView_Book.Columns[6].HeaderText = "Import Price";
             DataGridView_Book.Columns[7].HeaderText = "Selling Price";
             DataGridView_Book.Columns[8].HeaderText = "Book";
-            DataGridView_Book.Columns[9].HeaderText = "Book Sold";
         }
 
         private void bt_ManageBooks_Click(object sender, EventArgs e)
@@ -301,7 +309,6 @@ namespace QuanLyThuVienSach.GUI
         private void SetDetail_Sach(Sach sach)
         {
             tb_Book.Text = sach.TongSoLuong.ToString();
-            tb_BookSold.Text = sach.SoLuongDaBan.ToString();
             tb_Cetegory.Text = sach.TheLoai.ToString();
             tb_Author.Text = sach.TenTacGia.ToString();
             tb_IDBook.Text = sach.MaSach.ToString();
@@ -312,17 +319,18 @@ namespace QuanLyThuVienSach.GUI
             tb_NameBook.Text = sach.TenSach.ToString();
         }
 
-
         private void bt_SaveBook_Click(object sender, EventArgs e)
-        {
-            BLL_Sach.Instance.UpdateSach_BLL(GetSach());
-            ShowManageBook();
+        {  
+            if (DataGridView_Book.SelectedRows != null)
+            {
+                BLL_Sach.Instance.UpdateSach_BLL(GetSach(),ID_PersonL);
+                ShowManageBook();
+            }    
         }
         private Sach GetSach()
         {  
             Sach sach = new Sach();
             sach.TongSoLuong = Convert.ToInt32(tb_Book.Text.ToString());
-            sach.SoLuongDaBan  = Convert.ToInt32(tb_BookSold.Text.ToString());
             sach.TheLoai = tb_Cetegory.Text;
             sach.TenTacGia = tb_Author.Text;
             sach.MaSach = Convert.ToInt32(tb_IDBook.Text.ToString());
@@ -355,7 +363,7 @@ namespace QuanLyThuVienSach.GUI
 
         private void bt_AddBookS_Click(object sender, EventArgs e)
         {
-            FormAddBooks f = new FormAddBooks();
+            FormAddBooks f = new FormAddBooks(ID_PersonL);
             f.d = new FormAddBooks.Mydel(ShowManageBook);
             f.ShowDialog();
 
@@ -380,7 +388,7 @@ namespace QuanLyThuVienSach.GUI
 
         #endregion
 
-        //-------------------------------------------------------------------------SALE
+        //------------------------------------------------------------------------- SALE
 
         #region SALE
         private void bt_AddSale_Click(object sender, EventArgs e)
@@ -437,6 +445,7 @@ namespace QuanLyThuVienSach.GUI
                     int ID = Convert.ToInt32(DataGridView_SachKhuyenMai.SelectedRows[0].Cells["ID_SachKhuyenMai"].Value);
                     SachKhuyenMai sachKM = BLL_SachKhuyenMai.Instance.GetSachKhuyenMaiByID(ID);
                     SetDetail_SKM(sachKM);
+
                 }
             }
         }
@@ -471,14 +480,19 @@ namespace QuanLyThuVienSach.GUI
 
         private void bt_SaveDiscount_Click(object sender, EventArgs e)
         {
-            foreach (int i in BLL_Sach.Instance.GetAllMaSach_BLL())
+            if(DataGridView_SachKhuyenMai.SelectedRows != null)
             {
-                if (i != GetSachKhuyenMai().MaSach)
+                foreach (int i in BLL_Sach.Instance.GetAllMaSach_BLL())
                 {
-                    BLL_SachKhuyenMai.Instance.UpdateSachKhuyenMai_BLL(GetSachKhuyenMai());
-                    ShowSachKhuyenMai();
-                }   
-            }      
+                    if (i != GetSachKhuyenMai().MaSach)
+                    {
+                        BLL_SachKhuyenMai.Instance.UpdateSachKhuyenMai_BLL(GetSachKhuyenMai());
+                        ShowSachKhuyenMai();
+                    }
+                }
+
+            }    
+      
         }
       
         private SachKhuyenMai GetSachKhuyenMai()
@@ -548,10 +562,14 @@ namespace QuanLyThuVienSach.GUI
             }
         }
 
+    
+
+
 
         #endregion
 
         //------------------------------------------------------------------ HISTORY
+
         #region History
         private void bt_History_Click(object sender, EventArgs e)
         {
@@ -559,18 +577,245 @@ namespace QuanLyThuVienSach.GUI
             Page_Admin.SetPage("History");
             ShowHistory();
         }
+        private void Reloand_History_Click(object sender, EventArgs e)
+        {
+            ShowHistory();
+        }
 
         private void ShowHistory()
         {
-            DataGridView_History.DataSource = DAL_LichSuNhapSach.Instance.GetAllLichSuNhapSach_DAL();
+            DataGridView_History.DataSource = BLL_LichSuNhapSach.Instance.GetAllLichSuNhapSach_BLL();
             DataGridView_History.Columns[0].HeaderText = "ID";
             DataGridView_History.Columns[1].HeaderText = "ID Book";
             DataGridView_History.Columns[2].HeaderText = "Number of Book";
             DataGridView_History.Columns[3].HeaderText = "TIME";
-            DataGridView_History.Columns[4].HeaderText = "ID Account";
+            DataGridView_History.Columns[4].HeaderText = "ID Member";
         }
 
+        private void bunifuButton21_Click(object sender, EventArgs e)
+        {
+            DateTime from = DatePicker_1History.Value;
+            DateTime to = DatePicker_2History.Value;
+            if (from <= to)
+            {
+                DataGridView_History.DataSource = BLL_LichSuNhapSach.Instance.GetAllLichSuNhapSach_BLL(from, to);
+                DataGridView_History.Columns[0].HeaderText = "ID";
+                DataGridView_History.Columns[1].HeaderText = "ID Book";
+                DataGridView_History.Columns[2].HeaderText = "Number of Book";
+                DataGridView_History.Columns[3].HeaderText = "TIME";
+                DataGridView_History.Columns[4].HeaderText = "ID Member";
+            }
+            else
+            {
+                MessageBox.Show("Kiểm tra lại ngày bắt đầu hoặc ngày kết thúc");
+            }    
+
+        }
+        
+
         #endregion
+
+        //-------------------------------------------------------------- STATISTICS
+
+        #region STATISTICS
+        private void bt_Statistics_Click(object sender, EventArgs e)
+        {
+            MovePanel(bt_Statistics);
+            Page_Admin.SetPage("Statistics");
+            ShowStatistics();
+        }
+
+        private void Reloand_Statistics_Click(object sender, EventArgs e)
+        {
+            ShowStatistics();
+        }
+
+
+        private void ShowStatistics()
+        {
+            Statistics statistics = BLL_Statistics.Instance.GetStatistics();
+            tb_SoLuongSachNhap.Text = statistics.SoSachNhap.ToString();
+            tb_SoLuongSachBan.Text = statistics.SoSachBan.ToString();
+            tb_ChiPhi.Text = statistics.ChiPhi.ToString();
+            tb_DoanhThu.Text = statistics.DoanhThu.ToString();
+            tb_SoLuongHoaDon.Text = statistics.SoHoaDon.ToString();
+            //---DESIGN %
+            #region design
+            chart1.Series[0].Points.Clear();
+            chart2.Series[0].Points.Clear();
+            int a = statistics.SoSachBan;
+            int b = statistics.SoSachNhap;
+            double c = 0;
+            if (b != 0 && a < b)
+            {
+                c = (Math.Round((double)a / b, 3) * 100);
+                CircleProgress_SoLuongDaBan.Value = Convert.ToInt32(c);
+            }
+            if (b != 0 && a > b)
+            {
+                CircleProgress_SoLuongDaBan.Value = 100;
+            }
+            else
+            {
+                CircleProgress_SoLuongDaBan.Value = 0;
+            }
+
+            chart1.Series[0].Points.AddXY("Purchased Book", a);
+            chart1.Series[0].Points[0].Label = a.ToString();
+            chart1.Series[0].Points.AddXY("Total Sold Book", b);
+            chart1.Series[0].Points[1].Label = b.ToString();
+
+            decimal x = statistics.DoanhThu;
+            decimal y = statistics.ChiPhi;
+            double z = 0;
+            if (y != 0 && x < y)
+            {
+                z = (Math.Round(Convert.ToDouble(x / y), 3) * 100);
+                CircleProgress_DoanhThu.Value = Convert.ToInt32(z);
+            }
+            if (y != 0 && x > y)
+            {
+                CircleProgress_DoanhThu.Value = 100;
+            }
+            else
+            {
+                CircleProgress_DoanhThu.Value = 0;
+            }
+            chart2.Series[0].Points.AddXY("Expense", y);
+            chart2.Series[0].Points[0].Label = y.ToString();
+            chart2.Series[0].Points.AddXY("Total Revenue", x);
+            chart2.Series[0].Points[1].Label = x.ToString();
+            #endregion
+            //----------
+        }
+        private void bunifuButton22_Click(object sender, EventArgs e)
+        {
+            if(DatePickerStatistics_Start.Value <= DatePickerStatistics_End.Value)
+            {
+                Statistics statistics = BLL_Statistics.Instance.GetStatistics(DatePickerStatistics_Start.Value, DatePickerStatistics_End.Value);
+                tb_SoLuongSachNhap.Text = statistics.SoSachNhap.ToString();
+                tb_SoLuongSachBan.Text = statistics.SoSachBan.ToString();
+                tb_ChiPhi.Text = statistics.ChiPhi.ToString();
+                tb_DoanhThu.Text = statistics.DoanhThu.ToString();
+                tb_SoLuongHoaDon.Text = statistics.SoHoaDon.ToString();
+                //---DESIGN %
+                #region design
+                chart1.Series[0].Points.Clear();
+                chart2.Series[0].Points.Clear();
+                int a = statistics.SoSachBan;
+                int b = statistics.SoSachNhap;
+                double c = 0;
+                if (b != 0 && a < b)
+                {
+                    c = (Math.Round((double)a / b, 3) * 100);
+                    CircleProgress_SoLuongDaBan.Value = Convert.ToInt32(c);
+                }
+                if(b != 0 && a > b)
+                {
+                    CircleProgress_SoLuongDaBan.Value = 100;
+                }    
+                else
+                {
+                    CircleProgress_SoLuongDaBan.Value = 0;
+                }
+
+                chart1.Series[0].Points.AddXY("Purchased Book", a);
+                chart1.Series[0].Points[0].Label = a.ToString();
+                chart1.Series[0].Points.AddXY("Total Sold Book", b);
+                chart1.Series[0].Points[1].Label = b.ToString();
+
+                decimal x = statistics.DoanhThu;
+                decimal y = statistics.ChiPhi;
+                double z = 0;
+                if (y != 0 && x < y)
+                {
+                    z = (Math.Round(Convert.ToDouble(x / y), 3) * 100);
+                    CircleProgress_DoanhThu.Value = Convert.ToInt32(z);
+                }
+                if (y != 0 && x > y)
+                {
+                    CircleProgress_DoanhThu.Value = 100;
+
+                }
+                else
+                {
+                    CircleProgress_DoanhThu.Value = 0;
+                }
+                chart2.Series[0].Points.AddXY("Expense", y);
+                chart2.Series[0].Points[0].Label = y.ToString();
+                chart2.Series[0].Points.AddXY("Total Revenue", x);
+                chart2.Series[0].Points[1].Label = x.ToString();
+                #endregion
+                //----------
+            }
+            else { MessageBox.Show("Kiểm tra lại ngày bắt đầu hoặc ngày kết thúc"); }
+
+        }
+
+
+        #endregion
+
+        //------------------------------------------------------------------- BILL
+
+        #region BILL
+        private void bt_Bill_Click(object sender, EventArgs e)
+        {
+            MovePanel(bt_Bill);
+            Page_Admin.SetPage("Bill");
+            ShowAllBill();
+        }
+
+        private void Reloand_Bill_Click(object sender, EventArgs e)
+        {
+            ShowAllBill();
+            DataGridView_DetailBill.DataSource = 0;
+        }
+
+        private void bt_Detail_Click(object sender, EventArgs e)
+        {
+            if (DataGridView_Bill.SelectedRows.Count != 0)
+            {
+                int MaHoaDon = 0;
+                foreach (DataGridViewRow i in DataGridView_Bill.SelectedRows)
+                {
+                MaHoaDon = Convert.ToInt32(i.Cells["MaHoaDon"].Value);
+                }
+                DataGridView_DetailBill.DataSource = BLL_Bill.Instance.GetBillByID_BLL(MaHoaDon);
+            }  
+        }
+
+        private void ShowAllBill()
+        {
+            DataGridView_Bill.DataSource = BLL_Bill.Instance.GetAllBill_BLL();
+            DataGridView_Bill.Columns[0].HeaderText = "ID Bill";
+            DataGridView_Bill.Columns[1].HeaderText = "DATE";
+            DataGridView_Bill.Columns[2].HeaderText = "Amount";
+            DataGridView_Bill.Columns[3].HeaderText = "ID Member";
+        }
+
+        private void bt_BillOk_Click(object sender, EventArgs e)
+        {
+            DateTime from = DatePicker_1Bill.Value;
+            DateTime to   = DatePicker_2Bill.Value;
+
+            if(from < to)
+            {
+                DataGridView_DetailBill.DataSource = 0;
+                DataGridView_Bill.DataSource = BLL_Bill.Instance.GetAllBill_BLL(from,to);
+                DataGridView_Bill.Columns[0].HeaderText = "ID Bill";
+                DataGridView_Bill.Columns[1].HeaderText = "DATE";
+                DataGridView_Bill.Columns[2].HeaderText = "Amount";
+                DataGridView_Bill.Columns[3].HeaderText = "ID Member";
+            } 
+            else
+            {
+                MessageBox.Show("Kiểm tra lại ngày bắt đầu hoặc ngày kết thúc");
+            }    
+        }
+
+
+        #endregion
+
 
     }
 }

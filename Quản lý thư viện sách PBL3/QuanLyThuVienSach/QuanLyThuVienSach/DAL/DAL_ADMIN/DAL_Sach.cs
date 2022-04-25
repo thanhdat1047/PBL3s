@@ -27,24 +27,71 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
 
         public DataTable GetAllSach_DAL()
         {
-            string query = " SELECT Sach.MaSach,TenSach,Theloai,TenTacGia,SolanTaiBan,NamXuatBan,GiaNhap,GiaBan,TongSoLuong,SoLuongDaBan " +
+            string query = " SELECT Sach.MaSach,TenSach,Theloai,TenTacGia,SolanTaiBan,NamXuatBan,GiaNhap,GiaBan,TongSoLuong" +
                            " FROM dbo.Sach,Kho " +
                            " WHERE Sach.MaSach = Kho.MaSach";
             return DBHelper.Instance.GetRecord(query);
         }
 
-        public void UpdateSach_DAL(Sach sach)
+        public void UpdateSach_DAL(Sach sach, int ID_Person)
         {
+
             string query = $" UPDATE Sach SET TenSach = '{sach.TenSach}', Theloai = '{sach.TheLoai}', TenTacGia = '{sach.TenTacGia}', " +
                            $" SolanTaiBan = {sach.SoLanTaiBan}, NamXuatBan = '{sach.NamXuatBan}', GiaNhap = {sach.GiaNhap}, GiaBan = {sach.GiaBan}" +
                            $" WHERE MaSach = {sach.MaSach}";
             DBHelper.Instance.ExecuteDB(query);
 
-
-            string query1 = $" UPDATE Kho SET TongSoLuong = {sach.TongSoLuong}, SoLuongDaBan = {sach.SoLuongDaBan}" +
+            string query1 = $" UPDATE Kho SET TongSoLuong = {sach.TongSoLuong}"+
                             $" WHERE MaSach = {sach.MaSach}";
 
             DBHelper.Instance.ExecuteDB(query1);
+
+
+            /*    string query2 = $"SELECT SUM(SoLuong) FROM LichSuNhapSach WHERE MaSach = {sach.MaSach}";
+                int SoLuong = 0;
+                foreach (DataRow i in DBHelper.Instance.GetRecord(query2).Rows)
+                {
+                    SoLuong = Convert.ToInt32(i[0]);
+                }
+
+
+                if(sach.TongSoLuong > SoLuong)
+                {
+                string query3 = $"INSERT INTO dbo.LichSuNhapSach VALUES( {sach.MaSach}, {sach.TongSoLuong - SoLuong}, GETDATE(), {ID_Person} )";
+                DBHelper.Instance.ExecuteDB(query3);
+                } 
+
+                if (sach.TongSoLuong < SoLuong)
+                {
+                    int TongSoLuong = sach.TongSoLuong;
+                    int ID_LSNS = 0;
+                    int soluong = 0;
+                    while (true)
+                    {
+                        string query4 = $"SELECT ID_LichSuNhapSach,SoLuong FROM LichSuNhapSach WHERE MaSach = {sach.MaSach} ORDER BY ID_LichSuNhapSach DESC";
+                        foreach (DataRow i in DBHelper.Instance.GetRecord(query4).Rows)
+                        {
+                            ID_LSNS = (Convert.ToInt32(i[0]));
+                            soluong = (Convert.ToInt32(i[1]));
+                        }
+                        int t = TongSoLuong - soluong;
+                        if(t > 0)
+                        {
+                        string query5 = $" DELETE from LichSuNhapSach where MaSach = {sach.MaSach} AND ID_LichSuNhapSach = {ID_LSNS}";
+                        DBHelper.Instance.ExecuteDB(query5);
+                        TongSoLuong = t;
+                        }
+                        else 
+                        {
+                            string query6 = $" UPDATE LichSuNhapSach SET SoLuong = {-t} WHERE MaSach = {sach.MaSach} AND ID_LichSuNhapSach = {ID_LSNS}";
+                            DBHelper.Instance.ExecuteDB(query6);
+                            break;
+                        }
+
+                    }
+
+                }*/
+
         }
 
         public void DeleteSach_DAL(String MaSach)
@@ -59,7 +106,7 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
             DBHelper.Instance.ExecuteDB(query3);
         }
 
-        public void AddSach_DAL(Sach sach)
+        public void AddSach_DAL(Sach sach,int ID_Person)
         {
             string query = $"INSERT INTO dbo.Sach VALUES ( '{sach.TenSach}', '{sach.TheLoai}', '{sach.TenTacGia}', '{sach.SoLanTaiBan}', '{sach.NamXuatBan}', {sach.GiaNhap}, {sach.GiaBan} )";
 
@@ -73,13 +120,16 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
                 masach = Convert.ToInt32(i[0]);
             }
 
-            string query2 = $"INSERT INTO dbo.Kho VALUES ({masach},{sach.TongSoLuong},{sach.SoLuongDaBan})";
+            string query2 = $"INSERT INTO dbo.Kho VALUES ({masach},{sach.TongSoLuong})";
             DBHelper.Instance.ExecuteDB(query2);
+
+            string query3 = $"INSERT INTO dbo.LichSuNhapSach VALUES( {masach}, {sach.TongSoLuong}, GETDATE(), {ID_Person} )";
+            DBHelper.Instance.ExecuteDB(query3);
         }
 
         public DataTable FindSach_DAL(string txt)
         {
-            string query = $"SELECT Sach.MaSach, TenSach, TheLoai, TenTacGia, SoLanTaiBan, NamXuatBan, GiaNhap, GiaBan, TongSoLuong, SoLuongDaBan" +
+            string query = $"SELECT Sach.MaSach, TenSach, TheLoai, TenTacGia, SoLanTaiBan, NamXuatBan, GiaNhap, GiaBan, TongSoLuong" +
                 $" FROM Sach, Kho" +
                 $" WHERE Sach.MaSach = Kho.MaSach" +
                 $" AND TenSach LIKE '%{txt}%'";

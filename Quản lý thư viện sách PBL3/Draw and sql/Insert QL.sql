@@ -1,7 +1,8 @@
 
-USE QuanLyThuVienSach;
+USE QuanLyThuVienSach
+
 GO
-    
+
 INSERT INTO dbo.Sach VALUES ( 'Dac Nhan Tam', 'Cuoc Song', 'Dale Carnegie', '80', '1936', 76000, 80000 )
 
 INSERT INTO dbo.Sach VALUES ( 'Nha Gia Kim', 'Phieu Luu', 'Paulo Coelho', '100', '1988', 59000, 65000 )
@@ -45,20 +46,20 @@ INSERT INTO dbo.Person VALUES ( 'Phan Thanh Duc', 0, '2002-02-10', 'Quang Nam', 
 INSERT INTO dbo.Person VALUES ( 'Nguyen Trong Hoang', 0, '2002-03-10', 'Ha Noi', 'TTronghoang2002t@gmail.com', '0848056811', 6)
 
 
+INSERT INTO dbo.Kho VALUES ( 1, 10)
 
-INSERT INTO dbo.Kho VALUES ( 1, 10, 5)
+INSERT INTO dbo.Kho VALUES ( 2, 20)
 
-INSERT INTO dbo.Kho VALUES ( 2, 20, 15)
-
-INSERT INTO dbo.Kho VALUES ( 3, 15, 10)
+INSERT INTO dbo.Kho VALUES ( 3, 15)
 
 
-			
-INSERT INTO dbo.LichSuNhapSach VALUES( 1, 10, GETDATE(), 2 )
+INSERT INTO dbo.LichSuNhapSach VALUES( 1, 5,  '2022-3-24', 2 )
 
-INSERT INTO dbo.LichSuNhapSach VALUES( 2, 20, GETDATE(), 2 )
+INSERT INTO dbo.LichSuNhapSach VALUES( 1, 5,  '2022-4-24', 2 )
 
-INSERT INTO dbo.LichSuNhapSach VALUES( 3, 15, GETDATE(), 2 )
+INSERT INTO dbo.LichSuNhapSach VALUES( 2, 20, '2022-5-24', 2 )
+
+INSERT INTO dbo.LichSuNhapSach VALUES( 3, 15, '2022-6-24', 2 )
 					
 
 INSERT INTO dbo.SachKhuyenMai VALUES( 1, 0.5, GETDATE(), '2022-6-1' )
@@ -66,9 +67,19 @@ INSERT INTO dbo.SachKhuyenMai VALUES( 1, 0.5, GETDATE(), '2022-6-1' )
 INSERT INTO dbo.SachKhuyenMai VALUES( 2, 0.2, GETDATE(), '2022-6-1' )
 
 		
-		
-INSERT INTO dbo.HoaDon VALUES ( GETDATE(), 80000, 4)
+INSERT INTO dbo.HoaDon VALUES ('2022-3-24', 80000, 4)
+INSERT INTO dbo.HoaDon VALUES ('2022-3-24', 125000,5)
+INSERT INTO dbo.HoaDon VALUES ('2022-3-26', 104000,6) 
+INSERT INTO dbo.HoaDon VALUES ('2022-3-30', 142000,6) 
+INSERT INTO dbo.HoaDon VALUES ('2022-4-14', 225000,4) 
 
 			
 INSERT INTO dbo.ChiTietHoaDon VALUES ( 1, 1, 2, 0.5 )
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 1, 2, 2, 0.2 )
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 2, 1, 2, 0.5 )
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 3, 3, 1, 1   )
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 4, 2, 2, 0.2 )
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 5, 2, 1, 0.2 )
+
+
 

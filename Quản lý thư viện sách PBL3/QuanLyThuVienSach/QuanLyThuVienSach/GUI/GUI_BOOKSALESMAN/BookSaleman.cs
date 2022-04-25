@@ -51,8 +51,6 @@ namespace QuanLyThuVienSach.GUI.GUI_BOOKSALESMAN
             Page_NhanVienBanSach.SetPage("Bill");
         }
 
-      
-
         private void btn_CreateBill_Click(object sender, EventArgs e)
         {
             new CreateBill().ShowDialog();

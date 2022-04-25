@@ -29,5 +29,11 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
             string query = "Select * From LichSuNhapSach";
             return DBHelper.Instance.GetRecord(query);
         }
+        public DataTable GetAllLichSuNhapSach_DAL(DateTime From ,DateTime To)
+        {
+            string query = $"Select * From LichSuNhapSach WHERE NgayNhap >= '{From}' and NgayNhap <= '{To}' ";
+            return DBHelper.Instance.GetRecord(query);
+        }
+
     }
 }

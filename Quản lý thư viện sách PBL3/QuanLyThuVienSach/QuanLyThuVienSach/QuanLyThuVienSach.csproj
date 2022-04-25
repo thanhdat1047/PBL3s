@@ -192,6 +192,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -205,24 +206,31 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BILL\BILL_ADMIN\BLL_Bill.cs" />
     <Compile Include="BILL\BILL_ADMIN\BLL_Sach.cs" />
     <Compile Include="BILL\BILL_ADMIN\BLL_Member.cs" />
     <Compile Include="BILL\BILL_ADMIN\BLL_SachKhuyenMai.cs" />
     <Compile Include="BILL\BILL_ADMIN\BLL_LichSuNhapSach.cs" />
+    <Compile Include="BILL\BILL_ADMIN\BLL_Statistics.cs" />
     <Compile Include="BILL\BLL_Login\BLL_Login.cs" />
+    <Compile Include="DAL\DAL_ADMIN\DAL_Bill.cs" />
     <Compile Include="DAL\DAL_ADMIN\DAL_Member.cs" />
     <Compile Include="DAL\DAL_ADMIN\DAL_SachKhuyenMai.cs" />
+    <Compile Include="DAL\DAL_ADMIN\DAL_Statistics.cs" />
     <Compile Include="DAL\DAL_ADMIN\DBHelper.cs" />
     <Compile Include="DAL\DAL_ADMIN\DAL_Sach.cs" />
     <Compile Include="DAL\DAL_ADMIN\DAL_LichSuNhapSach.cs" />
     <Compile Include="DAL\DAL_Login\DAL_Login.cs" />
     <Compile Include="DAL\DAL_Login\DBHelper.cs" />
     <Compile Include="DTO\DTO_ADMIN\Account.cs" />
+    <Compile Include="DTO\DTO_ADMIN\Bill.cs" />
+    <Compile Include="DTO\DTO_ADMIN\Bill_Detail.cs" />
     <Compile Include="DTO\DTO_ADMIN\Member.cs" />
     <Compile Include="DTO\DTO_ADMIN\Sach.cs" />
     <Compile Include="DTO\DTO_ADMIN\Position.cs" />
     <Compile Include="DTO\DTO_ADMIN\Person.cs" />
     <Compile Include="DTO\DTO_ADMIN\SachKhuyenMai.cs" />
+    <Compile Include="DTO\DTO_ADMIN\Statistics.cs" />
     <Compile Include="DTO\DTO_Login\Account.cs" />
     <Compile Include="DTO\DTO_Login\Person.cs" />
     <Compile Include="GUI\GUI_ADMIN\Admin.cs">
@@ -498,6 +506,14 @@
   <ItemGroup>
     <None Include="Resources\historical_50px.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Untitled Diagram.drawio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\futures_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\billing_machine_24px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

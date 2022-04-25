@@ -28,5 +28,11 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             return DAL_LichSuNhapSach.Instance.GetAllLichSuNhapSach_DAL();
         }
 
+        public DataTable GetAllLichSuNhapSach_BLL(DateTime from , DateTime to)
+        {
+           return DAL_LichSuNhapSach.Instance.GetAllLichSuNhapSach_DAL(from,to);
+        }
+
+
     }
 }
