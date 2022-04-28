@@ -35,37 +35,42 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
 
         public void UpdateSach_DAL(Sach sach, int ID_Person)
         {
-
             string query = $" UPDATE Sach SET TenSach = '{sach.TenSach}', Theloai = '{sach.TheLoai}', TenTacGia = '{sach.TenTacGia}', " +
                            $" SolanTaiBan = {sach.SoLanTaiBan}, NamXuatBan = '{sach.NamXuatBan}', GiaNhap = {sach.GiaNhap}, GiaBan = {sach.GiaBan}" +
                            $" WHERE MaSach = {sach.MaSach}";
             DBHelper.Instance.ExecuteDB(query);
 
-            string query1 = $" UPDATE Kho SET TongSoLuong = {sach.TongSoLuong}"+
-                            $" WHERE MaSach = {sach.MaSach}";
-
-            DBHelper.Instance.ExecuteDB(query1);
-
-
-            /*    string query2 = $"SELECT SUM(SoLuong) FROM LichSuNhapSach WHERE MaSach = {sach.MaSach}";
+             string query1 = $"SELECT TongSoLuong FROM Kho WHERE MaSach = {sach.MaSach}";
                 int SoLuong = 0;
-                foreach (DataRow i in DBHelper.Instance.GetRecord(query2).Rows)
+                foreach (DataRow i in DBHelper.Instance.GetRecord(query1).Rows)
                 {
                     SoLuong = Convert.ToInt32(i[0]);
                 }
 
+            string query2 = $" UPDATE Kho SET TongSoLuong = {sach.TongSoLuong}" +
+                       $" WHERE MaSach = {sach.MaSach}";
 
-                if(sach.TongSoLuong > SoLuong)
+            DBHelper.Instance.ExecuteDB(query2);
+
+
+            if (sach.TongSoLuong > SoLuong)
                 {
                 string query3 = $"INSERT INTO dbo.LichSuNhapSach VALUES( {sach.MaSach}, {sach.TongSoLuong - SoLuong}, GETDATE(), {ID_Person} )";
                 DBHelper.Instance.ExecuteDB(query3);
                 } 
 
-                if (sach.TongSoLuong < SoLuong)
+                if(sach.TongSoLuong > SoLuong)
                 {
-                    int TongSoLuong = sach.TongSoLuong;
+                string query3 = $"INSERT INTO dbo.LichSuNhapSach VALUES( {sach.MaSach}, {sach.TongSoLuong - SoLuong}, GETDATE(), {ID_Person})";
+                DBHelper.Instance.ExecuteDB(query3);
+                } 
+
+                if (sach.TongSoLuong <= SoLuong)
+                {
+                    int SoLuongMat = (SoLuong - sach.TongSoLuong);
                     int ID_LSNS = 0;
                     int soluong = 0;
+
                     while (true)
                     {
                         string query4 = $"SELECT ID_LichSuNhapSach,SoLuong FROM LichSuNhapSach WHERE MaSach = {sach.MaSach} ORDER BY ID_LichSuNhapSach DESC";
@@ -74,23 +79,25 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
                             ID_LSNS = (Convert.ToInt32(i[0]));
                             soluong = (Convert.ToInt32(i[1]));
                         }
-                        int t = TongSoLuong - soluong;
-                        if(t > 0)
-                        {
+                    int t = SoLuongMat - soluong;
+                    if (t >= 0)
+                    {
                         string query5 = $" DELETE from LichSuNhapSach where MaSach = {sach.MaSach} AND ID_LichSuNhapSach = {ID_LSNS}";
                         DBHelper.Instance.ExecuteDB(query5);
-                        TongSoLuong = t;
-                        }
-                        else 
-                        {
+                        SoLuongMat = t;
+                       
+                    }
+                    else
+                    {
                             string query6 = $" UPDATE LichSuNhapSach SET SoLuong = {-t} WHERE MaSach = {sach.MaSach} AND ID_LichSuNhapSach = {ID_LSNS}";
                             DBHelper.Instance.ExecuteDB(query6);
+                            SoLuongMat = 0;
                             break;
-                        }
+                    }
 
                     }
 
-                }*/
+                }
 
         }
 
