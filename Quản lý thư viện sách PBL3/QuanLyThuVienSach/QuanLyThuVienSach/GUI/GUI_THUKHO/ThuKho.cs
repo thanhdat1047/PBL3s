@@ -17,6 +17,7 @@ namespace QuanLyThuVienSach.GUI.GUI_THUKHO
         {
             InitializeComponent();
         }
+        #region Movepanel
         private void MovePanel(Control c)
         {
             Panel_THUKHO.Height = (c.Height - 15);
@@ -55,8 +56,10 @@ namespace QuanLyThuVienSach.GUI.GUI_THUKHO
             Page_ThuKho.SetPage("History");
 
         }
+        #endregion
 
-        //TAB_RESUME
+
+        #region TAB_RESUME
 
         private void bt_EditResume_Click(object sender, EventArgs e)
         {
@@ -67,17 +70,21 @@ namespace QuanLyThuVienSach.GUI.GUI_THUKHO
         {
             new FormChangePassword().ShowDialog();
         }
+        #endregion
 
-        //TAB_MANAGEBOOK
+        #region TAB_MANAGEBOOK
 
         private void bt_AddBook_Click(object sender, EventArgs e)
         {
             new FormAddBooks().ShowDialog();
         }
+        #endregion
 
+        #region Tab_WareHouse
         private void bt_AddBook_WareHouse_Click(object sender, EventArgs e)
         {
 
         }
+        #endregion
     }
 }
