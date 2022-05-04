@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuanLyThuVienSach.DTO.DTO_ADMIN;
 
 namespace QuanLyThuVienSach.BILL.BILL_ADMIN
 {
@@ -38,5 +39,7 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             return DAL_Bill.Instance.GetBillByID_DAL(ID);
         }
 
+        //dat 
+ 
     }
 }

@@ -27,9 +27,7 @@ namespace QuanLyThuVienSach.DAL.DAL_Login
         }
         private DBHelper()
         {
-           // cnnstring = @"Data Source=DESKTOP-BP0TSS8;Initial Catalog=QuanLyThuVienSach;Integrated Security=True";
-            cnnstring = @"Data Source=LAPTOP-TUNGSDPF\SQLEXPRESS;Initial Catalog=QuanLyThuVienSach;Integrated Security=True"; // thanhdat vui long k xoa
-
+            //cnnstring = @"Data Source=DESKTOP-BP0TSS8;Initial Catalog=QuanLyThuVienSach;Integrated Security=True";
         }
         public bool ExecuteDB(string query)
         {

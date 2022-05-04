@@ -213,6 +213,8 @@
     <Compile Include="BILL\BILL_ADMIN\BLL_LichSuNhapSach.cs" />
     <Compile Include="BILL\BILL_ADMIN\BLL_Statistics.cs" />
     <Compile Include="BILL\BLL_Login\BLL_Login.cs" />
+    <Compile Include="BILL\BLL_THUKHO\BLL_KhoSach.cs" />
+    <Compile Include="BILL\BLL_THUKHO\BLL_MemberTK.cs" />
     <Compile Include="DAL\DAL_ADMIN\DAL_Bill.cs" />
     <Compile Include="DAL\DAL_ADMIN\DAL_Member.cs" />
     <Compile Include="DAL\DAL_ADMIN\DAL_SachKhuyenMai.cs" />
@@ -222,10 +224,14 @@
     <Compile Include="DAL\DAL_ADMIN\DAL_LichSuNhapSach.cs" />
     <Compile Include="DAL\DAL_Login\DAL_Login.cs" />
     <Compile Include="DAL\DAL_Login\DBHelper.cs" />
+    <Compile Include="DAL\DAL_THUKHO\DAL_KhoSach.cs" />
+    <Compile Include="DAL\DAL_THUKHO\DAL_Member.cs" />
+    <Compile Include="DAL\DAL_THUKHO\DBHelper.cs" />
     <Compile Include="DTO\DTO_ADMIN\Account.cs" />
     <Compile Include="DTO\DTO_ADMIN\Bill.cs" />
     <Compile Include="DTO\DTO_ADMIN\Bill_Detail.cs" />
     <Compile Include="DTO\DTO_ADMIN\Member.cs" />
+    <Compile Include="DTO\DTO_ADMIN\Sacgview1.cs" />
     <Compile Include="DTO\DTO_ADMIN\Sach.cs" />
     <Compile Include="DTO\DTO_ADMIN\Position.cs" />
     <Compile Include="DTO\DTO_ADMIN\Person.cs" />
@@ -233,6 +239,15 @@
     <Compile Include="DTO\DTO_ADMIN\Statistics.cs" />
     <Compile Include="DTO\DTO_Login\Account.cs" />
     <Compile Include="DTO\DTO_Login\Person.cs" />
+    <Compile Include="DTO\DTO_THUKHO\Account.cs" />
+    <Compile Include="DTO\DTO_THUKHO\Member.cs" />
+    <Compile Include="DTO\DTO_THUKHO\Kho.cs" />
+    <Compile Include="DTO\DTO_THUKHO\LichSuNhapSach.cs" />
+    <Compile Include="DTO\DTO_THUKHO\Person.cs" />
+    <Compile Include="DTO\DTO_THUKHO\Sach.cs" />
+    <Compile Include="DTO\DTO_THUKHO\SachKhuyenMai.cs" />
+    <Compile Include="DTO\DTO_THUKHO\SachView1.cs" />
+    <Compile Include="DTO\DTO_THUKHO\SachView2.cs" />
     <Compile Include="GUI\GUI_ADMIN\Admin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -515,5 +530,6 @@
   <ItemGroup>
     <None Include="Resources\billing_machine_24px.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

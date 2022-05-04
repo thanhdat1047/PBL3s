@@ -49,7 +49,7 @@ namespace QuanLyThuVienSach.GUI
             tb_Email.Text = person.Email;
             tb_Name.Text = person.Name_Person;
             tb_Phone.Text = person.PhoneNumber;
-            if (person.Gender)
+            if (person.Gender == "Male")
             {
                 Rb_Male.Checked = true;
                 Rb_Female.Checked = false;
@@ -71,7 +71,16 @@ namespace QuanLyThuVienSach.GUI
             person.Email = tb_Email.Text;
             person.Address = tb_Address.Text;
             person.PhoneNumber = tb_Phone.Text;
-            person.Gender = Rb_Male.Checked;
+
+            if (Rb_Male.Checked == true)
+            {
+                person.Gender = "Male";
+            }
+            else
+            {
+                person.Gender = "Female";
+            }    
+            
             person.DateOfBirth = DatePicker_DOB.Value;
             return person;
         }

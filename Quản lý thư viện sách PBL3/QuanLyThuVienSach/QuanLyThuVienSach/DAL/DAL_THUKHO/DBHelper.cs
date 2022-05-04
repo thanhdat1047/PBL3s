@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace QuanLyThuVienSach.DAL.DAL_ADMIN
+using System.Data.SqlClient;
+using System.Data;
+namespace QuanLyThuVienSach.DAL.DAL_THUKHO
 {
     internal class DBHelper
     {
@@ -18,14 +17,13 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
                 if (_Instance == null)
                 {
                     //string cnnstring = @"Data Source=DESKTOP-BP0TSS8;Initial Catalog=QuanLyThuVienSach;Integrated Security=True";
-                    string cnnstring = @"Data Source=LAPTOP-TUNGSDPF\SQLEXPRESS;Initial Catalog=QLSVNEW;Integrated Security=True";
-                    _Instance = new DBHelper(cnnstring);
+                    string s = @"Data Source=LAPTOP-TUNGSDPF\SQLEXPRESS;Initial Catalog=QuanLyThuVienSach;Integrated Security=True";
+                    _Instance = new DBHelper(s);
                 }
                 return _Instance;
 
             }
-            private set { }
-
+             private set { }
         }
 
         private SqlConnection cnn;
@@ -59,13 +57,27 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
         public DataTable GetRecord(string query)
         {
             DataTable DT = new DataTable();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(query, cnn);
-            cnn.Open();
-            dataAdapter.Fill(DT);
-            cnn.Close();
+            try
+            {
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, cnn);
+                cnn.Open();
+                dataAdapter.Fill(DT);
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            finally
+            {
+
+                cnn.Close();
+
+            }
             return DT;
 
         }
     }
-
 }
+
