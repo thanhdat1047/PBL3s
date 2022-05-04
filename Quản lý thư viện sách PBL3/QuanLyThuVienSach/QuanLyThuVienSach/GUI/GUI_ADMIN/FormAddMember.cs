@@ -40,11 +40,11 @@ namespace QuanLyThuVienSach.GUI.GUI_ADMIN
 
             if (RadioButton_Male.Checked == true)
             {
-                member.Gender = true;
+                member.Gender = "Male";
             }
             else
             {
-                member.Gender = false;
+                member.Gender = "Female";
             }
 
             BLL_Member.Instance.AddMember_BLL(member);

@@ -1,12 +1,16 @@
-﻿using QuanLyThuVienSach.DTO.DTO_ADMIN;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data;
+using QuanLyThuVienSach.DTO.DTO_THUKHO;
 
-
-namespace QuanLyThuVienSach.DAL.DAL_ADMIN
+namespace QuanLyThuVienSach.DAL.DAL_THUKHO
 {
-    internal class DAL_Member
+    public class DAL_Member
     {
+
         private static DAL_Member _Instance;
         public static DAL_Member Instance
         {
@@ -57,7 +61,7 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
 
             string query1 = $" UPDATE dbo.Account SET UserName = '{member.UserName}', Password ='{member.Password}',ID_Position = '{member.ID_Position}' " +
               $" WHERE ID_Account = '{member.ID_Account}'; ";
-            DBHelper.Instance.ExecuteDB(query1);            
+            DBHelper.Instance.ExecuteDB(query1);
         }
 
         public void AddMember_DAL(Member member)
@@ -116,5 +120,7 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
 
 
 
+
     }
 }
+

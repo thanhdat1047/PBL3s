@@ -56,7 +56,7 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
                 {
                     ID_Person = Convert.ToInt32(i["ID_Person"]),
                     Name_Person = i["Name_Person"].ToString(),
-                    Gender = Convert.ToBoolean(i["Gender"]),
+                    Gender = i["Gender"].ToString(),
                     DateOfBirth = Convert.ToDateTime(i["DateOfBirth"]),
                     Address = i["Address"].ToString(),
                     Email = i["Email"].ToString(),

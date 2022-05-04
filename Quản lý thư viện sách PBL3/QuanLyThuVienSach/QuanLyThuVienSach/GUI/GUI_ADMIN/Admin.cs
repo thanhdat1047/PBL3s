@@ -100,15 +100,7 @@ namespace QuanLyThuVienSach.GUI
             tb_EmailResume.Text = member.Email;
             DateTime d = member.DateOfBirth;
             tb_DateOfBirthResume.Text = $"{d.Day}/{d.Month}/{d.Year}";
-
-            if (member.Gender)
-            {
-                tb_GenderResume.Text = "Male";
-            }
-            else
-            {
-                tb_GenderResume.Text = "Female";
-            }
+            tb_GenderResume.Text =member.Gender;
 
         }
         #endregion
@@ -132,7 +124,7 @@ namespace QuanLyThuVienSach.GUI
             DataGridView_Members.Columns[0].HeaderText = "ID";
             DataGridView_Members.Columns[1].HeaderText = "Name";
             DataGridView_Members.Columns[1].Width = 120;
-            DataGridView_Members.Columns[2].HeaderText = "      Gender";
+            DataGridView_Members.Columns[2].HeaderText = "Gender";
             DataGridView_Members.Columns[3].HeaderText = "Date of Birth";
             DataGridView_Members.Columns[4].HeaderText = "Address";
             DataGridView_Members.Columns[5].HeaderText = "Email";
@@ -194,7 +186,7 @@ namespace QuanLyThuVienSach.GUI
             tb_Phone.Text = member.PhoneNumber.ToString();
             DatePicker_DateOfBirth.Value = member.DateOfBirth;
 
-            if (member.Gender == true)
+            if (member.Gender == "Male")
             {
                 RadioButton_Male.Checked = true;
                 RadioButton_Female.Checked = false;
@@ -227,11 +219,11 @@ namespace QuanLyThuVienSach.GUI
 
             if (RadioButton_Male.Checked == true)
             {
-                member.Gender = true;
+                member.Gender = "Male";
             }
             else
             {
-                member.Gender = false;
+                member.Gender = "Female";
             }
             member.UserName = tb_UserName.Text.ToString();
             member.Password = tb_Password.Text.ToString();
@@ -255,7 +247,7 @@ namespace QuanLyThuVienSach.GUI
             DataGridView_Members.Columns[0].HeaderText = "ID";
             DataGridView_Members.Columns[1].HeaderText = "Name";
             DataGridView_Members.Columns[1].Width = 120;
-            DataGridView_Members.Columns[2].HeaderText = "      Gender";
+            DataGridView_Members.Columns[2].HeaderText = "Gender";
             DataGridView_Members.Columns[3].HeaderText = "Date of Birth";
             DataGridView_Members.Columns[4].HeaderText = "Address";
             DataGridView_Members.Columns[5].HeaderText = "Email";
@@ -640,6 +632,7 @@ namespace QuanLyThuVienSach.GUI
             tb_DoanhThu.Text = statistics.DoanhThu.ToString();
             tb_SoLuongHoaDon.Text = statistics.SoHoaDon.ToString();
             //---DESIGN %
+
             #region design
             chart1.Series[0].Points.Clear();
             chart2.Series[0].Points.Clear();
@@ -655,7 +648,7 @@ namespace QuanLyThuVienSach.GUI
             {
                 CircleProgress_SoLuongDaBan.Value = 100;
             }
-            else
+            if(b==0)
             {
                 CircleProgress_SoLuongDaBan.Value = 0;
             }
@@ -677,7 +670,7 @@ namespace QuanLyThuVienSach.GUI
             {
                 CircleProgress_DoanhThu.Value = 100;
             }
-            else
+            if(y==0)
             {
                 CircleProgress_DoanhThu.Value = 0;
             }
@@ -686,6 +679,7 @@ namespace QuanLyThuVienSach.GUI
             chart2.Series[0].Points.AddXY("Total Revenue", x);
             chart2.Series[0].Points[1].Label = x.ToString();
             #endregion
+
             //----------
         }
         private void bunifuButton22_Click(object sender, EventArgs e)
@@ -699,6 +693,7 @@ namespace QuanLyThuVienSach.GUI
                 tb_DoanhThu.Text = statistics.DoanhThu.ToString();
                 tb_SoLuongHoaDon.Text = statistics.SoHoaDon.ToString();
                 //---DESIGN %
+
                 #region design
                 chart1.Series[0].Points.Clear();
                 chart2.Series[0].Points.Clear();
@@ -709,14 +704,17 @@ namespace QuanLyThuVienSach.GUI
                 {
                     c = (Math.Round((double)a / b, 3) * 100);
                     CircleProgress_SoLuongDaBan.Value = Convert.ToInt32(c);
+        
                 }
                 if(b != 0 && a > b)
                 {
                     CircleProgress_SoLuongDaBan.Value = 100;
-                }    
-                else
+        
+                }
+                if (b == 0)
                 {
                     CircleProgress_SoLuongDaBan.Value = 0;
+            
                 }
 
                 chart1.Series[0].Points.AddXY("Purchased Book", a);
@@ -737,7 +735,7 @@ namespace QuanLyThuVienSach.GUI
                     CircleProgress_DoanhThu.Value = 100;
 
                 }
-                else
+                if(y==0)
                 {
                     CircleProgress_DoanhThu.Value = 0;
                 }
@@ -746,6 +744,7 @@ namespace QuanLyThuVienSach.GUI
                 chart2.Series[0].Points.AddXY("Total Revenue", x);
                 chart2.Series[0].Points[1].Label = x.ToString();
                 #endregion
+
                 //----------
             }
             else { MessageBox.Show("Kiểm tra lại ngày bắt đầu hoặc ngày kết thúc"); }
@@ -783,7 +782,6 @@ namespace QuanLyThuVienSach.GUI
                 DataGridView_DetailBill.DataSource = BLL_Bill.Instance.GetBillByID_BLL(MaHoaDon);
             }  
         }
-
         private void ShowAllBill()
         {
             DataGridView_Bill.DataSource = BLL_Bill.Instance.GetAllBill_BLL();
