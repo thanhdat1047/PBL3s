@@ -18,7 +18,7 @@ namespace QuanLyThuVienSach
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ThuKho());
+            Application.Run(new Login());
         }
     }
 }

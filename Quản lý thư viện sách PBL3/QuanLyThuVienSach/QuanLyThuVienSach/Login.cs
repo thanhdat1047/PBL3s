@@ -20,6 +20,8 @@ namespace QuanLyThuVienSach
         public Login()
         {
             InitializeComponent();
+            tb_PASSWORD.MaxLength = 30;
+            tb_USERNAME.MaxLength = 30;
         }
         private void tb_PASSWORD_Click(object sender, EventArgs e)
         {
@@ -110,5 +112,11 @@ namespace QuanLyThuVienSach
             }    
            
         }
+
+
+           
+          
+         
+        
     }
 }

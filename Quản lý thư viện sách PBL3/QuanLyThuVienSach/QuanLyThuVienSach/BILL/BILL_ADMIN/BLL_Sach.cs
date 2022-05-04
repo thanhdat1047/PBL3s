@@ -34,7 +34,6 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             foreach (DataRow i in DAL_Sach.Instance.GetAllSach_DAL().Rows)
             {
                 list.Add(new Sach
-
                 { 
                     MaSach = Convert.ToInt32(i[0]),
                     TenSach = i[1].ToString(),
@@ -51,7 +50,11 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             return list;
         }
 
-       
+        public DataTable GetAllSach()
+        {
+            return DAL_Sach.Instance.GetAllSach_DAL();
+        }
+
         public Sach GetSachByID(int ID_Sach)
         {
             Sach sach = new Sach();

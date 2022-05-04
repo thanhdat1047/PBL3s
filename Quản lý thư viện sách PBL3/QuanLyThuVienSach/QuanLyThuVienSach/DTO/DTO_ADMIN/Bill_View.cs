@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace QuanLyThuVienSach.DTO.DTO_ADMIN
 {
-    internal class Bill_Detail
+    internal class Bill_View
     {
-        public int MaHoaDon { get; set; }
         public int MaSach { get; set; }
+        public string TenSach { get; set; }
+        public double MucGiamGia { get; set; }
         public int SoLuong { get; set; }
+        public double Gia { get; set; }
+
 
     }
 }

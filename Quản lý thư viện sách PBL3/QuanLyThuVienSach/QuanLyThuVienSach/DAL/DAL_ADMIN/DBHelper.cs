@@ -10,6 +10,8 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
 {
     internal class DBHelper
     {
+        private string cnnstring;
+
         private static DBHelper _Instance;
         public static DBHelper Instance
         {
@@ -17,55 +19,55 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
             {
                 if (_Instance == null)
                 {
-                    //string cnnstring = @"Data Source=DESKTOP-BP0TSS8;Initial Catalog=QuanLyThuVienSach;Integrated Security=True";
-                    string cnnstring = @"Data Source=LAPTOP-TUNGSDPF\SQLEXPRESS;Initial Catalog=QLSVNEW;Integrated Security=True";
-                    _Instance = new DBHelper(cnnstring);
+                    _Instance = new DBHelper();
                 }
                 return _Instance;
-
             }
             private set { }
-
         }
-
-        private SqlConnection cnn;
-
-
-        private DBHelper(string s)
+        private DBHelper()
         {
-            cnn = new SqlConnection(s);
+            cnnstring = @"Data Source=DESKTOP-BP0TSS8;Initial Catalog=QuanLyThuVienSach;Integrated Security=True";
         }
-
-        public void ExecuteDB(string query)
+        public bool ExecuteDB(string query)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand(query, cnn);
-                cnn.Open();
-                cmd.ExecuteNonQuery();
-
+                using (SqlConnection cnn = new SqlConnection(cnnstring))
+                {
+                    SqlCommand cmd = new SqlCommand(query, cnn);
+                    cnn.Open();
+                    cmd.ExecuteNonQuery();
+                    cnn.Close();
+                }
+                return true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                Console.WriteLine("Loi");
-                Console.WriteLine(ex.Message.ToString());
-            }
-            finally
-            {
-                cnn.Close();
+                return false;
             }
         }
 
         public DataTable GetRecord(string query)
         {
-            DataTable DT = new DataTable();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(query, cnn);
-            cnn.Open();
-            dataAdapter.Fill(DT);
-            cnn.Close();
-            return DT;
-
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(cnnstring))
+                {
+                    SqlCommand cmd = new SqlCommand(query, cnn);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    cnn.Open();
+                    da.Fill(dt);
+                    cnn.Close();
+                    return dt;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
-
+   
 }

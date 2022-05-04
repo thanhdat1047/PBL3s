@@ -266,7 +266,7 @@ namespace QuanLyThuVienSach.GUI
         #region BOOK
         public void ShowManageBook()
         {
-            DataGridView_Book.DataSource = BLL_Sach.Instance.GetAllSach_BLL();
+            DataGridView_Book.DataSource = BLL_Sach.Instance.GetAllSach();
             DataGridView_Book.Columns[0].HeaderText = "ID Book";
             DataGridView_Book.Columns[1].HeaderText = "Name Book";
             DataGridView_Book.Columns[1].Width = 150;
@@ -539,6 +539,7 @@ namespace QuanLyThuVienSach.GUI
         private void bt_BookDetails_Click(object sender, EventArgs e)
         {
             int ID_Sach = 0;
+      
             if (DataGridView_SachKhuyenMai.SelectedRows.Count != 0)
             {
                 ID_Sach = Convert.ToInt32(DataGridView_SachKhuyenMai.SelectedRows[0].Cells["MaSach"].Value);
@@ -779,9 +780,28 @@ namespace QuanLyThuVienSach.GUI
                 {
                 MaHoaDon = Convert.ToInt32(i.Cells["MaHoaDon"].Value);
                 }
-                DataGridView_DetailBill.DataSource = BLL_Bill.Instance.GetBillByID_BLL(MaHoaDon);
+                DataGridView_DetailBill.DataSource = BLL_Bill.Instance.GetBill_Detail_Views(MaHoaDon);
             }  
         }
+
+        private void bunifuButton23_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("      Are you sure delete Bill ?", "Confirm delete", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (DataGridView_Bill.SelectedRows.Count > 0)
+                {
+                    List<int> list = new List<int>();
+                    foreach (DataGridViewRow i in DataGridView_Bill.SelectedRows)
+                    {
+                        list.Add(Convert.ToInt32(i.Cells["MaHoaDon"].Value));
+                    }
+                    BLL_Bill.Instance.DeleteBill_BLL(list);
+                }
+                ShowAllBill();
+            }
+        }
+
         private void ShowAllBill()
         {
             DataGridView_Bill.DataSource = BLL_Bill.Instance.GetAllBill_BLL();
@@ -796,7 +816,7 @@ namespace QuanLyThuVienSach.GUI
             DateTime from = DatePicker_1Bill.Value;
             DateTime to   = DatePicker_2Bill.Value;
 
-            if(from < to)
+            if(from <= to)
             {
                 DataGridView_DetailBill.DataSource = 0;
                 DataGridView_Bill.DataSource = BLL_Bill.Instance.GetAllBill_BLL(from,to);

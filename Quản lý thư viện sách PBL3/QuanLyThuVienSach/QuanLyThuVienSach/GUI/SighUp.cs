@@ -18,6 +18,8 @@ namespace QuanLyThuVienSach.GUI
         public SighUp()
         {
             InitializeComponent();
+            tb_PASSWORD.MaxLength = 30;
+            tb_USERNAME.MaxLength = 30;
         }
 
 

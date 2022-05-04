@@ -25,6 +25,27 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
         }
         private DAL_SachKhuyenMai() { }
 
+        public List<SachKhuyenMai> GetAllSachKM()
+        {
+            List<SachKhuyenMai> data = new List<SachKhuyenMai>();
+            string query = "select * from SachKhuyenMai";
+            foreach (DataRow i in DBHelper.Instance.GetRecord(query).Rows)
+            {
+                data.Add(GetSachKMByDataRow(i));
+            }
+            return data;
+        }
+        public SachKhuyenMai GetSachKMByDataRow(DataRow i)
+        {
+            return new SachKhuyenMai
+            {
+                ID_SachKhuyenMai = Convert.ToInt32(i["ID_SachKhuyenMai"].ToString()),
+                MaSach = Convert.ToInt32(i["MaSach"].ToString()),
+                MucGiamGia = Convert.ToDouble(i["MucGiamGia"]),
+                NgayBatDau = Convert.ToDateTime(i["NgayBatDau"]),
+                NgayKetThuc = Convert.ToDateTime(i["NgayKetThuc"])
+            };
+        }
         public DataTable getAllSachKhuyenMai()
         {
             string query =
