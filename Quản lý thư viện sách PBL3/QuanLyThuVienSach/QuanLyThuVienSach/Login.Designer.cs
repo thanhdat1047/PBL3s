@@ -396,7 +396,7 @@
             this.tb_PASSWORD.SelectionLength = 0;
             this.tb_PASSWORD.SelectionStart = 0;
             this.tb_PASSWORD.ShortcutsEnabled = true;
-            this.tb_PASSWORD.Size = new System.Drawing.Size(281, 55);
+            this.tb_PASSWORD.Size = new System.Drawing.Size(281, 57);
             this.tb_PASSWORD.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tb_PASSWORD.TabIndex = 4;
             this.tb_PASSWORD.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -474,7 +474,7 @@
             this.tb_USERNAME.SelectionLength = 0;
             this.tb_USERNAME.SelectionStart = 0;
             this.tb_USERNAME.ShortcutsEnabled = true;
-            this.tb_USERNAME.Size = new System.Drawing.Size(281, 55);
+            this.tb_USERNAME.Size = new System.Drawing.Size(281, 57);
             this.tb_USERNAME.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tb_USERNAME.TabIndex = 3;
             this.tb_USERNAME.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;

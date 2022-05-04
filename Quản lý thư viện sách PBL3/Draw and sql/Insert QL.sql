@@ -32,18 +32,17 @@ INSERT INTO dbo.Account VALUES( 'KhachHang2', '12345ad', 4 )
 INSERT INTO dbo.Account VALUES( 'KhachHang3', '12345ad', 4 )
 
 
+INSERT INTO dbo.Person VALUES ( 'Vu Tien Hung', 'Male', '2002-05-03', 'Ninh Binh', 'Tienhung0305@gmail.com', '0867166915', 1)
 
-INSERT INTO dbo.Person VALUES ( 'Vu Tien Hung', 1, '2002-05-03', 'Ninh Binh', 'Tienhung0305@gmail.com', '0867166915', 1)
+INSERT INTO dbo.Person VALUES ( 'Nguyen Hieu', 'Male', '2002-03-22', 'Da Nang', 'Hieupiro124@gmail.com', '0929230458', 2)
 
-INSERT INTO dbo.Person VALUES ( 'Nguyen Hieu', 0, '2002-03-22', 'Da Nang', 'Hieupiro124@gmail.com', '0929230458', 2)
+INSERT INTO dbo.Person VALUES ( 'Nguyen Tri Hau', 'Male', '2002-10-19', 'Quang Nam', 'Nguyentrihauqna@gmail.com', '0365288052', 3)
 
-INSERT INTO dbo.Person VALUES ( 'Nguyen Tri Hau', 0, '2002-10-19', 'Quang Nam', 'Nguyentrihauqna@gmail.com', '0365288052', 3)
+INSERT INTO dbo.Person VALUES ( 'Truong Thanh Dat', 'Male', '2002-05-10', 'Quang Nam', 'Thanhdat1047t@gmail.com', '0848056800', 4)
 
-INSERT INTO dbo.Person VALUES ( 'Truong Thanh Dat', 0, '2002-05-10', 'Quang Nam', 'Thanhdat1047t@gmail.com', '0848056800', 4)
+INSERT INTO dbo.Person VALUES ( 'Phan Thanh Duc', 'Female', '2002-02-10', 'Quang Nam', 'Thanhduc1047t@gmail.com', '0848056811', 5)
 
-INSERT INTO dbo.Person VALUES ( 'Phan Thanh Duc', 0, '2002-02-10', 'Quang Nam', 'Thanhduc1047t@gmail.com', '0848056811', 5)
-
-INSERT INTO dbo.Person VALUES ( 'Nguyen Trong Hoang', 0, '2002-03-10', 'Ha Noi', 'TTronghoang2002t@gmail.com', '0848056811', 6)
+INSERT INTO dbo.Person VALUES ( 'Nguyen Trong Hoang', 'Female', '2002-03-10', 'Ha Noi', 'TTronghoang2002t@gmail.com', '0848056811', 6)
 
 
 INSERT INTO dbo.Kho VALUES ( 1, 10)
@@ -67,19 +66,19 @@ INSERT INTO dbo.SachKhuyenMai VALUES( 1, 0.5, GETDATE(), '2022-6-1' )
 INSERT INTO dbo.SachKhuyenMai VALUES( 2, 0.2, GETDATE(), '2022-6-1' )
 
 		
-INSERT INTO dbo.HoaDon VALUES ('2022-3-24', 80000, 4)
-INSERT INTO dbo.HoaDon VALUES ('2022-3-24', 125000,5)
-INSERT INTO dbo.HoaDon VALUES ('2022-3-26', 104000,6) 
-INSERT INTO dbo.HoaDon VALUES ('2022-3-30', 142000,6) 
-INSERT INTO dbo.HoaDon VALUES ('2022-4-14', 225000,4) 
+INSERT INTO dbo.HoaDon VALUES ('2022-3-24', 34000, 4)
+INSERT INTO dbo.HoaDon VALUES ('2022-3-24', 80000,5)
+INSERT INTO dbo.HoaDon VALUES ('2022-3-26', 45000,6) 
+INSERT INTO dbo.HoaDon VALUES ('2022-3-30', 26000,6) 
+INSERT INTO dbo.HoaDon VALUES ('2022-4-14', 13000,4) 
 
 			
-INSERT INTO dbo.ChiTietHoaDon VALUES ( 1, 1, 2, 0.5 )
-INSERT INTO dbo.ChiTietHoaDon VALUES ( 1, 2, 2, 0.2 )
-INSERT INTO dbo.ChiTietHoaDon VALUES ( 2, 1, 2, 0.5 )
-INSERT INTO dbo.ChiTietHoaDon VALUES ( 3, 3, 1, 1   )
-INSERT INTO dbo.ChiTietHoaDon VALUES ( 4, 2, 2, 0.2 )
-INSERT INTO dbo.ChiTietHoaDon VALUES ( 5, 2, 1, 0.2 )
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 1, 1, 2)
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 1, 2, 2)
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 2, 1, 2)
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 3, 3, 1)
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 4, 2, 2)
+INSERT INTO dbo.ChiTietHoaDon VALUES ( 5, 2, 1)
 
 
 

@@ -225,6 +225,8 @@
     <Compile Include="DTO\DTO_ADMIN\Account.cs" />
     <Compile Include="DTO\DTO_ADMIN\Bill.cs" />
     <Compile Include="DTO\DTO_ADMIN\Bill_Detail.cs" />
+    <Compile Include="DTO\DTO_ADMIN\Bill_Detail_View.cs" />
+    <Compile Include="DTO\DTO_ADMIN\Bill_View.cs" />
     <Compile Include="DTO\DTO_ADMIN\Member.cs" />
     <Compile Include="DTO\DTO_ADMIN\Sach.cs" />
     <Compile Include="DTO\DTO_ADMIN\Position.cs" />
@@ -514,6 +516,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\billing_machine_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\us_dollar_24px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

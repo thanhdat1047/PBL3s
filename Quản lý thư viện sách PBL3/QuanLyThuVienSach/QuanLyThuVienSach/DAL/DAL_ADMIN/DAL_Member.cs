@@ -27,7 +27,7 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
             string query =
                 " SELECT ID_Person,Name_Person,Gender,DateOfBirth,Address,Email,PhoneNumber,Person.ID_Account, UserName, Password, Name_Position" +
                 " FROM Person,Account,Position" +
-                " WHERE Person.ID_Account = Account.ID_Account AND Account.ID_Position = Position.ID_Position";
+                " WHERE Person.ID_Account = Account.ID_Account AND Account.ID_Position = Position.ID_Position ";
             return DBHelper.Instance.GetRecord(query);
         }
 
@@ -51,7 +51,7 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
 
         public void UpdateMember_DAL(Member member)
         {
-            string query = $" UPDATE dbo.Person SET Name_Person = '{member.Name_Person}',Gender = {Convert.ToInt32(member.Gender)}, DateOfBirth = '{member.DateOfBirth}', Address = '{member.Address}', Email= '{member.Email}', PhoneNumber ='{member.PhoneNumber}'" +
+            string query = $" UPDATE dbo.Person SET Name_Person = '{member.Name_Person}',Gender = '{member.Gender}', DateOfBirth = '{member.DateOfBirth}', Address = '{member.Address}', Email= '{member.Email}', PhoneNumber ='{member.PhoneNumber}'" +
                             $" WHERE ID_Person = {member.ID_Person}; ";
             DBHelper.Instance.ExecuteDB(query);
 
@@ -73,7 +73,7 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
                 ID_Account = Convert.ToInt32(i[0]);
             }
 
-            string query2 = $"INSERT INTO dbo.Person VALUES ( '{member.Name_Person}', {Convert.ToInt32(member.Gender)}, '{member.DateOfBirth}', '{member.Address}', '{member.Email}', '{member.PhoneNumber}', {ID_Account})";
+            string query2 = $"INSERT INTO dbo.Person VALUES ( '{member.Name_Person}', '{member.Gender}', '{member.DateOfBirth}', '{member.Address}', '{member.Email}', '{member.PhoneNumber}', {ID_Account})";
             DBHelper.Instance.ExecuteDB(query2);
         }
 
@@ -93,7 +93,7 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
 
         public void UpdatePerson(Person person)
         {
-            string query = $" UPDATE dbo.Person SET Name_Person = '{person.Name_Person}',Gender = {Convert.ToInt32(person.Gender)}, DateOfBirth = '{person.DateOfBirth}', Address = '{person.Address}', Email= '{person.Email}', PhoneNumber ='{person.PhoneNumber}'" +
+            string query = $" UPDATE dbo.Person SET Name_Person = '{person.Name_Person}',Gender = '{person.Gender}', DateOfBirth = '{person.DateOfBirth}', Address = '{person.Address}', Email= '{person.Email}', PhoneNumber ='{person.PhoneNumber}'" +
                            $" WHERE ID_Person = {person.ID_Person}; ";
             DBHelper.Instance.ExecuteDB(query);
         }

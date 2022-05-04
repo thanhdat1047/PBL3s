@@ -1,7 +1,7 @@
-CREATE DATABASE QuanLyThuVienSach;
+CREATE DATABASE QuanLyThuVienSach
 GO
 
-USE QuanLyThuVienSach;
+USE QuanLyThuVienSach
 GO
 
 create table Position(
@@ -21,7 +21,7 @@ go
 create table Person(
 ID_Person int identity(1, 1) primary key,
 Name_Person varchar(30),
-Gender bit,
+Gender varchar(30),
 DateOfBirth DATE,
 Address varchar(40),
 Email varchar(50),
@@ -67,17 +67,6 @@ FOREIGN KEY (ID_Person) REFERENCES dbo.Person(ID_Person),
 )
 go
 
-
-create table ChiTietHoaDon(
-MaHoaDon INT FOREIGN key (MaHoaDon) references HoaDon,
-MaSach int foreign key (MaSach) references Sach,
-SoLuong int,
-MucGiamGia float
-constraint pk_ChiTiet primary key(MaHoaDon, MaSach)
-)
-go
-
-
 create table SachKhuyenMai(
 ID_SachKhuyenMai INT IDENTITY(1, 1) PRIMARY KEY,
 MaSach int foreign key (MaSach) references Sach,
@@ -86,3 +75,14 @@ NgayBatDau DATE,
 NgayKetThuc DATE
 )
 go
+
+create table ChiTietHoaDon(
+MaHoaDon INT FOREIGN key (MaHoaDon) references HoaDon,
+MaSach int foreign key (MaSach) references Sach,
+SoLuong int,
+constraint pk_ChiTiet primary key(MaHoaDon, MaSach)
+)
+go
+
+
+
