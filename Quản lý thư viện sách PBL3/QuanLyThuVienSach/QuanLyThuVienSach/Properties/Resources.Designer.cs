@@ -403,6 +403,16 @@ namespace QuanLyThuVienSach.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap us_dollar_24px {
+            get {
+                object obj = ResourceManager.GetObject("us_dollar_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap user_menu_female_32px {
             get {
                 object obj = ResourceManager.GetObject("user_menu_female_32px", resourceCulture);

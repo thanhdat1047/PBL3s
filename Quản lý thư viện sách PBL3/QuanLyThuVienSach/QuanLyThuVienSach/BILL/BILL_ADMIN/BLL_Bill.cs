@@ -1,11 +1,11 @@
 ﻿using QuanLyThuVienSach.DAL.DAL_ADMIN;
+using QuanLyThuVienSach.DTO.DTO_ADMIN;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using QuanLyThuVienSach.DTO.DTO_ADMIN;
 
 namespace QuanLyThuVienSach.BILL.BILL_ADMIN
 {
@@ -39,7 +39,41 @@ namespace QuanLyThuVienSach.BILL.BILL_ADMIN
             return DAL_Bill.Instance.GetBillByID_DAL(ID);
         }
 
-        //dat 
- 
+        public void DeleteBill_BLL(List<int> list)
+        {
+            foreach(int id in list)
+            {
+                DAL_Bill.Instance.DeleteBill_DAL(id);
+            }    
+
+        }
+   
+        public List<Bill_Detail_View> GetBill_Detail_Views(int MaHoaDon)
+        {
+            List<Bill_Detail_View> list = new List<Bill_Detail_View>();
+            foreach (Bill_Detail i in DAL_Bill.Instance.GetBill_Detail(MaHoaDon))
+            {
+                Bill_Detail_View bdv = new Bill_Detail_View();
+                bdv.MaHoaDon = MaHoaDon;
+                bdv.MaSach = i.MaSach;
+                bdv.SoLuong = i.SoLuong;
+                foreach (Sach sach in DAL_Sach.Instance.GetAllSach())
+                {
+                    if(sach.MaSach == bdv.MaSach)
+                    {
+                        bdv.TenSach = sach.TenSach;
+                        bdv.MucGiamGia = DAL_Bill.Instance.GetMucGiamGia(sach.MaSach);
+                        bdv.Total = (sach.GiaBan * bdv.MucGiamGia * bdv.SoLuong);
+                        break;
+                    }
+                    ;
+                } 
+                list.Add(bdv);
+            }    
+            return list;
+        }
+
+   
+
     }
 }

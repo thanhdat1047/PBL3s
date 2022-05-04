@@ -17,6 +17,5 @@ namespace QuanLyThuVienSach.DTO.DTO_ADMIN
         public double GiaNhap { get; set; }
         public double GiaBan { get; set; }
         public int TongSoLuong { get; set; }
-
     }
 }

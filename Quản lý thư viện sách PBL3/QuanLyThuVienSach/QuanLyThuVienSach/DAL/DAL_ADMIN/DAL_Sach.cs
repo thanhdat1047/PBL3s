@@ -25,6 +25,30 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
         }
         private DAL_Sach() { }
 
+        public List<Sach> GetAllSach()
+        {
+            List<Sach> data = new List<Sach>();
+            string query = "select * from Sach";
+            foreach (DataRow i in DBHelper.Instance.GetRecord(query).Rows)
+            {
+                data.Add(GetSachByDataRow(i));
+            }
+            return data;
+        }
+        public Sach GetSachByDataRow(DataRow i)
+        {
+            return new Sach
+            {
+                MaSach = Convert.ToInt32(i["MaSach"].ToString()),
+                TenSach = i["TenSach"].ToString(),
+                TheLoai = i["TheLoai"].ToString(),
+                TenTacGia = i["TenTacGia"].ToString(),
+                SoLanTaiBan = Convert.ToInt32(i["SolanTaiBan"].ToString()),
+                NamXuatBan = i["NamXuatBan"].ToString(),
+                GiaNhap = Convert.ToInt32(i["GiaNhap"].ToString()),
+                GiaBan = Convert.ToInt32(i["GiaBan"].ToString())
+            };
+        }
         public DataTable GetAllSach_DAL()
         {
             string query = " SELECT Sach.MaSach,TenSach,Theloai,TenTacGia,SolanTaiBan,NamXuatBan,GiaNhap,GiaBan,TongSoLuong" +
@@ -32,10 +56,6 @@ namespace QuanLyThuVienSach.DAL.DAL_ADMIN
                            " WHERE Sach.MaSach = Kho.MaSach";
             return DBHelper.Instance.GetRecord(query);
         }
-  
-
-
-
 
         public void UpdateSach_DAL(Sach sach, int ID_Person)
         {

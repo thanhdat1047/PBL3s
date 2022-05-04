@@ -22,7 +22,10 @@ namespace QuanLyThuVienSach.GUI.GUI_ADMIN
         public FormChangePassword(int ID_account)
         {
             InitializeComponent();
-            ID_Account = ID_account;      
+            ID_Account = ID_account;
+            tb_CPass.MaxLength = 30;
+            tb_NewPass.MaxLength = 30;
+            tb_Pass.MaxLength = 30;
         }
 
         private void btn_Exit1_Click(object sender, EventArgs e)
@@ -32,31 +35,38 @@ namespace QuanLyThuVienSach.GUI.GUI_ADMIN
 
         private void btn_Ok_Click(object sender, EventArgs e)
         {
-            Account account = BLL_Member.Instance.GetAccountByID(ID_Account);
-            
-            if( tb_Pass.Text == account.Password)
+            if (tb_Pass.Text != "")
             {
-                if(tb_NewPass.Text == tb_CPass.Text)
+                Account account = BLL_Member.Instance.GetAccountByID(ID_Account);
+
+                if (tb_Pass.Text == account.Password)
                 {
-                    Account account_new = new Account();
-                    account_new.ID_Account = ID_Account;
-                    account_new.UserName = account.UserName;
-                    account_new.Password = tb_NewPass.Text;
-                    BLL_Member.Instance.UpdateAccount_BLL(account_new);
-                    MessageBox.Show("Thay đổi mật khẩu thành công");
+                    if (tb_NewPass.Text == tb_CPass.Text)
+                    {
+                        Account account_new = new Account();
+                        account_new.ID_Account = ID_Account;
+                        account_new.UserName = account.UserName;
+                        account_new.Password = tb_NewPass.Text;
+                        BLL_Member.Instance.UpdateAccount_BLL(account_new);
+                        MessageBox.Show("Thay đổi mật khẩu thành công");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mật khẩu không khớp");
+                    }
 
                 }
                 else
                 {
-                    MessageBox.Show("Mật khẩu không khớp");
-                }    
-     
+                    MessageBox.Show("Mật khẩu không chính xác ");
+
+                }
             }
             else
             {
-                MessageBox.Show("Mật khẩu không chính xác ");
-
-            }
+                MessageBox.Show("Nhập mật khẩu");
+            }    
         }
     }
 }
