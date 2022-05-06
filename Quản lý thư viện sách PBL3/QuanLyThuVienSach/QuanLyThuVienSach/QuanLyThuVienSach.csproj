@@ -175,6 +175,12 @@
     <Reference Include="Bunifu.UI.WinForms.Deprecated, Version=5.3.0.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
       <HintPath>..\packages\Bunifu.UI.WinForms.5.3.0\lib\net40\Bunifu.UI.WinForms.Deprecated.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Guna.UI">
       <HintPath>..\..\..\Guna.UI-Framework-Lib-master\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
     </Reference>
@@ -190,8 +196,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -222,6 +231,7 @@
     <Compile Include="DAL\DAL_ADMIN\DAL_LichSuNhapSach.cs" />
     <Compile Include="DAL\DAL_Login\DAL_Login.cs" />
     <Compile Include="DAL\DAL_Login\DBHelper.cs" />
+    <Compile Include="DAL\DAL_QL\DBHelper.cs" />
     <Compile Include="DTO\DTO_ADMIN\Account.cs" />
     <Compile Include="DTO\DTO_ADMIN\Bill.cs" />
     <Compile Include="DTO\DTO_ADMIN\Bill_Detail.cs" />
@@ -333,6 +343,48 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQL\Account.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\ChiTietHoaDon.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\HoaDon.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\Kho.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\LichSuNhapSach.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\Person.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\Position.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\Sach.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\SachKhuyenMai.cs">
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\SQL.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SQL.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\SQL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\SQL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SQL.edmx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\GUI_ADMIN\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
@@ -402,6 +454,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EntityDeploy Include="SQL\SQL.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SQL.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SQL\SQL.edmx.diagram">
+      <DependentUpon>SQL.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -519,6 +578,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\us_dollar_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BILL\BLL_QL\" />
+    <Folder Include="DTO\DTO_QL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\SQL.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SQL.edmx</DependentUpon>
+      <LastGenOutput>SQL.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SQL\SQL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SQL.edmx</DependentUpon>
+      <LastGenOutput>SQL.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

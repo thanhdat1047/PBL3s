@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aa08a11711cc4fc8aa1ce39be2aa7fce" Name="Diagram1">
+        <EntityTypeShape EntityType="QLTVS.Account" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVS.ChiTietHoaDon" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVS.HoaDon" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVS.Kho" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVS.LichSuNhapSach" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVS.Person" Width="1.5" PointX="1.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVS.Position" Width="1.5" PointX="1.5" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVS.Sach" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTVS.SachKhuyenMai" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="QLTVS.FK__Account__ID_Posi__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTVS.FK__Person__ID_Accou__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTVS.FK__ChiTietHo__MaHoa__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTVS.FK__ChiTietHo__MaSac__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTVS.FK__HoaDon__ID_Perso__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTVS.FK__Kho__MaSach__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTVS.FK__LichSuNha__MaSac__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTVS.FK__LichSuNha__ID_Pe__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTVS.FK__SachKhuye__MaSac__4F7CD00D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
